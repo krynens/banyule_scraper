@@ -1,53 +1,34 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import time
-import csv
-import datetime 
-
-# Define Headless Driver
-user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
-options = webdriver.ChromeOptions()
-options.headless = True
-options.add_argument(f'user-agent={user_agent}')
-options.add_argument("--window-size=1920,1080")
-options.add_argument('--ignore-certificate-errors')
-options.add_argument('--allow-running-insecure-content')
-options.add_argument("--disable-extensions")
-options.add_argument("--proxy-server='direct://'")
-options.add_argument("--proxy-bypass-list=*")
-options.add_argument("--start-maximized")
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--no-sandbox')
-
-# driver = webdriver.Chrome('/users/krynen/desktop/selenium/browsers/chromedriver')
-driver = webdriver.Chrome('/users/krynen/desktop/selenium/browsers/chromedriver', options=options)
+import datetime
+import scraperwiki
+from splinter import Browser
 
 # Define Today
 today = datetime.date.today().strftime('%-d %B %Y')
+
+with Browser("phantomjs") as browser:
+    browser.driver.set_window_size(1280, 1024)
+    browser.visit('https://eservices.portphillip.vic.gov.au/ePathway/Production/Web/GeneralEnquiry/EnquiryLists.aspx')
+    print('Starting Port Phillip Ad scraper...')
 
 # Define and open CSV File
 csv_file = open('portphillip_ad.csv', 'w+')
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['Number', 'Description', 'Lodged', 'Address', 'Documents', 'Date Scraped'])
 
-driver.get('https://eservices.portphillip.vic.gov.au/ePathway/Production/Web/GeneralEnquiry/EnquiryLists.aspx')
-print('Starting Port Phillip Ad scraper...')
-print()
-
 # Define and Click Buttons
-advertising = driver.find_element_by_id('ctl00_MainBodyContent_mDataList_ctl03_mDataGrid_ctl02_ctl00')
+advertising = browser.find_by_id('ctl00_MainBodyContent_mDataList_ctl03_mDataGrid_ctl02_ctl00')
 advertising.click()
 
-next = driver.find_element_by_id('ctl00_MainBodyContent_mContinueButton')
+next = driver.find_by_id('ctl00_MainBodyContent_mContinueButton')
 next.click()
 
 # Define Application Variables
-number = driver.find_elements_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[1]/a')
-description = driver.find_elements_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[3]/div')
-address = driver.find_elements_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[2]/div')
-documents = driver.find_elements_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[1]/a')
-lodged = driver.find_elements_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[4]/span')
+number = driver.find_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[1]/a')
+description = driver.find_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[3]/div')
+address = driver.find_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[2]/div')
+documents = driver.find_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[1]/a')
+lodged = driver.find_by_xpath('//*[@id="ctl00_MainBodyContent_group_11"]/table/tbody/tr/td/table/tbody/tr/td[4]/span')
 
 # Write to CSV File
 page_items = len(number)
