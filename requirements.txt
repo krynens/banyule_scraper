@@ -12,7 +12,6 @@ cssselect==1.1.0
 hyperlink==21.0.0
 idna==2.10
 incremental==21.3.0
-itemadapter==0.2.0
 itemloaders==1.0.4
 jmespath==0.10.0
 lxml==4.6.2
