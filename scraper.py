@@ -16,7 +16,7 @@ max_page = int(soupt.find('div', class_='seamless-pagination-info right').text.s
 for i in range(1, max_page + 1):
     try:
         print(f'Getting page {i}')
-        url = f'https://www.banyule.vic.gov.au/Planning-building/Review-local-planning-applications/Planning-applications-on-public-notice?dlv_OC%20CL%20Public%20Works%20and%20Projects=(pageindex={i})'
+        url = 'https://www.banyule.vic.gov.au/Planning-building/Review-local-planning-applications/Planning-applications-on-public-notice?dlv_OC%20CL%20Public%20Works%20and%20Projects=(pageindex=' + str(i) + ')'
         r = requests.get(url)
         soup = BeautifulSoup(r.content, 'lxml')
         rows = soup.find_all('div', class_='list-item-container item-no-date')
