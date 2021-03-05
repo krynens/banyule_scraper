@@ -7,7 +7,7 @@ import os
 os.environ["SCRAPERWIKI_DATABASE_NAME"] = "sqlite:///data.sqlite"
 
 
-today = datetime.today()
+today = datetime.date.today()
 
 for i in range(50):
     try:
