@@ -1,6 +1,11 @@
 # Install custom version of scraperwiki library
 -e git+http://github.com/openaustralia/scraperwiki-python.git@morph_defaults#egg=scraperwiki
 
-lxml==4.6.2
+beautifulsoup4==4.9.3
+bs4==0.0.1
+certifi==2020.12.5
+chardet==4.0.0
+idna==2.10
 requests==2.25.1
-Scrapy==2.4.1
+soupsieve==2.2
+urllib3==1.26.3
