@@ -7,7 +7,7 @@ import os
 os.environ["SCRAPERWIKI_DATABASE_NAME"] = "sqlite:///data.sqlite"
 
 
-today = datetime.today()
+today = datetime.date.today()
 url = f'https://www.melbourne.vic.gov.au/building-and-development/property-information/planning-building-registers/Pages/town-planning-permits-register-search-results.aspx?AdvertisingOnly=on&page={i}'
 
 for i in range(1, 50):
