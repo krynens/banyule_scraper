@@ -23,8 +23,8 @@ for i in range(1, 50):
             record['address'] = row.find('td', class_='column2').text
             date_received_raw = row.find('td', class_='column3').text
             record['date_received'] = datetime.strptime(
-                date_received_raw, "%d/%m/%Y").strftime("%d-%m-%Y")
-            record['date_scraped'] = today.strftime("%d-%m-%Y")
+                date_received_raw, "%d/%m/%Y").strftime("%Y-%m-%d")
+            record['date_scraped'] = today.strftime("%Y-%m-%d")
             record['description'] = row.find('td', class_='column4').text
             record['council_reference'] = row.find('td', class_='column1').text
             record['info_url'] = 'https://www.melbourne.vic.gov.au' + \
