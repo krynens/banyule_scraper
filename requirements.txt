@@ -30,7 +30,6 @@ python-dateutil==2.8.1
 python-editor==1.0.4
 queuelib==1.5.0
 requests==2.25.1
-scraperwiki==0.5.1
 Scrapy==2.4.1
 service-identity==18.1.0
 six==1.15.0
