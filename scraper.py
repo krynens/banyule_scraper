@@ -9,7 +9,7 @@ os.environ["SCRAPERWIKI_DATABASE_NAME"] = "sqlite:///data.sqlite"
 
 today = datetime.date.today()
 
-for i in range(50):
+for i in range(1,50):
     try:
         url = f'https://www.melbourne.vic.gov.au/building-and-development/property-information/planning-building-registers/Pages/town-planning-permits-register-search-results.aspx?AdvertisingOnly=on&page={i}'
         r = requests.get(url)
@@ -35,3 +35,4 @@ for i in range(50):
 
     except:
         print('Scraper finished.')
+        break
