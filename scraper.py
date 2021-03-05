@@ -17,6 +17,7 @@ table = soup.find('tbody')
 rows = table.find_all('tr', class_='detail')
 
 for row in rows:
+    record = {}
     record['address'] = row.find('td', class_='column2').text
     date_received_raw = row.find('td', class_='column3').text
     record['date_received'] = datetime.strptime(date_received_raw, "%d/%m/%Y").strftime("%d-%m-%Y")
