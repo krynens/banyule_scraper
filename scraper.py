@@ -8,12 +8,7 @@ from bs4 import BeautifulSoup
 
 today = datetime.today()
 
-urlt = 'https://www.banyule.vic.gov.au/Planning-building/Review-local-planning-applications/Planning-applications-on-public-notice?dlv_OC%20CL%20Public%20Works%20and%20Projects=(pageindex=1)'
-rt = requests.get(urlt)
-soupt = BeautifulSoup(rt.content, 'lxml')
-max_page = int(soupt.find('div', class_='seamless-pagination-info right').text.split('of ')[1])
-
-for i in range(1, max_page + 1):
+for i in range(1, 10):
     try:
         print(f'Getting page {i}')
         url = 'https://www.banyule.vic.gov.au/Planning-building/Review-local-planning-applications/Planning-applications-on-public-notice?dlv_OC%20CL%20Public%20Works%20and%20Projects=(pageindex=' + str(i) + ')'
