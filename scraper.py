@@ -26,5 +26,5 @@ for row in rows:
     record['council_reference'] = row.find('td', class_='column1').text
     record['info_url'] = 'https://www.melbourne.vic.gov.au' + \
         str(row.find('td', class_='column1')).split('"')[5]
-
-scraperwiki.sqlite.save(unique_keys=['council_reference'], data=record, table_name="data")
+    
+    scraperwiki.sqlite.save(unique_keys=['council_reference'], data=record, table_name="data")
